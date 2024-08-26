@@ -65,51 +65,47 @@
 
 				<p>
 					I enjoy developing new algorithms motivated by real-world applications and systems.
-					My <a href="pubs/thesis.pdf">PhD thesis</a> developed Parallel algorithms and run-times with
+					My <a href="pubs/thesis.pdf">PhD thesis</a> developed parallel algorithms and run-times with
 					provable guarantees for multi-core processors.
-					Subsequently, I worked with an amazing team at Microsoft Research India developing New ML operators
+					Subsequently, I worked with an amazing team at Microsoft Research India developing new ML operators
 					and architectures for tiny IoT and edge devices (<a
 						href="https://github.com/Microsoft/EdgeML">EdgeML</a>).
 				</p>
 
 				<p>
-					Also at MSR India, we started the DiskANN suite of algorithms for Approximate Nearest Neighbor
+					Also at MSR India, we started the <a href="https://github.com/Microsoft/DiskANN">DiskANN suite of
+						algorithms</a> for Approximate Nearest Neighbor
 					Search (ANNS)
-					to address the large gap between research and practical needs in this space. This project developed
+					to address the large gap between research and practical needs. We developed
 					the first practical <a href="" pubs/DiskANN19.pdf">SSD-based</a>
 					ANNS system that can search a billion points in few milliseconds, real-time accurate <a
 						href="https://arxiv.org/abs/2105.09613">updates</a> and
-					incredibly fast predicated vector queries via <a href="pubs/Filtered-DiskANN23.pdf">Filtered-DiskANN
-						indexing algorithms</a> that incorporate vector and predicate data.
-					We developed an open source implementation of these ideas <a
-						href="https://github.com/Microsoft/DiskANN">here</a>.
+					fast predicated vector queries via <a href="pubs/Filtered-DiskANN23.pdf">Filtered-DiskANN
+					</a> that incorporate vector and predicate data into index construction.
 				</p>
 
 				<p>
-					The ideas developed by the DiskANN project are widely deployed <a
+					These ideas are widely deployed <a
 						href="https://www.youtube.com/watch?time_continue=1&v=BnYNdSIKibQ">at scale in Microsoft</a> for
-					search and recommendation
-					(Bing web search, Advertisements, enterprise document search), co-pilots (e.g., Microsoft 365 and
+					web and enterprise document search, advertisements and recommendation systems,
 					<a
 						href="https://blogs.windows.com/windowsdeveloper/2024/05/21/unlock-a-new-era-of-innovation-with-windows-copilot-runtime-and-copilot-pcs/">Windows
-						Copilot runtime</a>)
+						Copilot runtime</a>,
 					and have influcenced many vector databases
-					(e.g., <a href="https://github.com/jbellis/jvector">DataStax Jvector</a>,
+					[<a href="https://github.com/jbellis/jvector">DataStax Jvector</a>,
 					<a href="https://github.com/timescale/pgvectorscale">pgvectorscale</a>,
-					<a href="https://www.pinecone.io/blog/hnsw-not-enough/">Pinecone Graph Algorithms</a>),
+					<a href="https://www.pinecone.io/blog/hnsw-not-enough/">Pinecone Graph Algorithms</a>],
 					and hardware accelerated designs
-					(e.g., <a
+					[<a
 						href="https://www.intel.com/content/www/us/en/developer/articles/technical/winning-neurips-billion-scale-ann-search-challenge.html">Intel
-						OptANNE</a>,
-					<a href="https://arxiv.org/html/2401.11324v2">BANG algorithm for GPUs</a>).
+						OptaNNE for pmem</a>,
+					<a href="https://arxiv.org/html/2401.11324v2">BANG for GPUs</a>].
 				</p>
 
 				<p>
 					Recently, I joined Azure Data and have been working with an amazing team on rewriting DiskANN in
-					Rust
-					and to inter-operate with databases (e.g., CosmosDB NoSQL, PostgreSQL), key-value stores, and plain
-					old memory
-					buffers and file systems to reconcile and improve various forks of the algorithms.
+					Rust and to inter-operate with databases (e.g., CosmosDB NoSQL, PostgreSQL), key-value stores, and
+					plain old memory buffers and file systems to reconcile and improve various forks of the algorithms.
 					This project has been the foundation of vector indices for Azure Vector Databases
 					such as <a href="https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search">CosmosDB
 						NoSQL</a>.
@@ -193,7 +189,8 @@
 							href="https://github.com/Microsoft/EdgeML/tree/master/Applications/GesturePod/onMKR1000">code</a>)
 						<BR>
 						ACM UIST'19 (with Shishir Patil, Don Kurian Dennis, Chirag Pabbaraju, Rajanikant Deshmukh, Manik
-						Varma, Prateek Jain) </LI>
+						Varma, Prateek Jain)
+					</LI>
 
 					<LI><a href="pubs/acl19.pdf">
 							Word2Sense : Sparse Interpretable Word Embeddings</a><BR>
