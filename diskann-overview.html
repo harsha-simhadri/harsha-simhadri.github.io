@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview of the DiskANN Project (2018–present)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        ol, ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .references {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-top: 30px;
+        }
+        .references h2 {
+            margin-top: 0;
+        }
+        .references ol {
+            margin-bottom: 0;
+        }
+        code {
+            background-color: #f1f2f6;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .citation {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .citation:hover {
+            text-decoration: underline;
+        }
+        .reference-item {
+            scroll-margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overview of the DiskANN Project (2018–present)</h1>
+
+    <div class="section">
+        <h2>Research Ideas</h2>
+        <p>DiskANN started as a research project in 2018–2019 to address the large gap between vector search algorithms in the literature and the rapidly expanding scale and feature needs in industry.</p>
+        
+        <p>Our research, with co-authors from MSR, Microsoft product groups, CMU, UMD, MIT, IITH, and UCI, addresses the following problems—many of which push the state of the art by an order of magnitude in one or more directions:</p>
+        
+        <ol>
+            <li>The first practical, high-performance SSD-based index that could index 10× more vectors per machine than previous in-memory systems <a href="#ref1" class="citation">[1]</a>.</li>
+            <li>The first papers on updating graph-structured vector indices with stable recall, either via merges <a href="#ref2" class="citation">[2]</a> or via in-place edits <a href="#ref4" class="citation">[4]</a>.</li>
+            <li>The first paper on predicate pushdown for vector-plus-predicate queries that provide high recall and two or more orders of magnitude higher query performance <a href="#ref3" class="citation">[3]</a>.</li>
+            <li>Deterministic parallel updates to the index (experiments on 192 cores) <a href="#ref5" class="citation">[5]</a>.</li>
+            <li>A single logical, distributed 50-billion-point index across 1,000 machines with 6× higher efficiency than sharded indices <a href="#ref8" class="citation">[8]</a>.</li>
+            <li>Investigation of out-of-distribution (OOD) queries <a href="#ref16" class="citation">[16]</a>.</li>
+            <li>Indices for diverse recommendations <a href="#ref17" class="citation">[17]</a>.</li>
+            <li>Adaptations of large indices for GPUs <a href="#ref21" class="citation">[21]</a>.</li>
+            <li>A theoretical analysis of beam search for graph-structured vector indices <a href="#ref25" class="citation">[25]</a>.</li>
+            <li>Adaptive distances for large vector search with predicates <a href="#ref26" class="citation">[26]</a>.</li>
+        </ol>
+        
+        <p>Some of the ideas are surveyed in a recent bulletin <a href="#ref6" class="citation">[6]</a>.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Adoption</h2>
+        <p>Many of these ideas are implemented in an open-source project <a href="#ref12" class="citation">[12]</a>, and are used widely within Microsoft and industry, and have inspired hardware adaptations. A few examples include:</p>
+        
+        <ol>
+            <li>The code we wrote supports at-scale vector indices at Microsoft in Bing, Ads, Microsoft 365, Windows, and Azure databases.</li>
+            <li>In the PostgreSQL ecosystem, they are implemented by TimescaleDB as pgvectorscale <a href="#ref14" class="citation">[14]</a>.</li>
+            <li>In the Cassandra ecosystem, DataStax (now part of IBM) implemented them as JVector <a href="#ref15" class="citation">[15]</a>.</li>
+            <li>Milvus, Pinecone, Weaviate, and other vector databases have implemented or adapted these ideas.</li>
+            <li>Storage-only vector search by Kioxia <a href="#ref19" class="citation">[19]</a>.</li>
+            <li>Intel's adaptations for Optane PMem <a href="#ref20" class="citation">[20]</a>.</li>
+            <li>NVIDIA's adaptations for the cuVS library <a href="#ref18" class="citation">[18]</a>, <a href="#ref22" class="citation">[22]</a>.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>Benchmarks</h2>
+        <p>Along the way, we realized there were few public datasets or benchmarks, so we partnered with other companies and universities to:</p>
+        
+        <ol>
+            <li>Create new datasets for large-scale vector search and its variants <a href="#ref13" class="citation">[13]</a>.</li>
+            <li>Publish open-source baseline algorithms <a href="#ref12" class="citation">[12]</a>.</li>
+            <li>Run two competitions at NeurIPS 2021 and NeurIPS 2023 <a href="#ref9" class="citation">[9]</a>, <a href="#ref10" class="citation">[10]</a>. These have been used in many theses and research papers, including those in database and ML conferences.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>Current and Future</h2>
+        <p>The code for this research <a href="#ref12" class="citation">[12]</a> was forked many times internally and reimplemented externally, which made it hard to manage and develop new algorithms. 
+            Further, since the 2023 version of DiskANN <a href="#ref12" class="citation">[12]</a> was tied to specific points in the storage hierarchy and managed its own index terms, 
+            it was hard to integrate into databases, preventing it from being hardened into a highly available and durable vector database.</p>
+        <p>With this in mind, since 2023 we have rewritten DiskANN in Rust with the following goals:</p>
+        
+        <ol>
+            <li>DiskANN delegates storage of indexing terms to a host database (or key-value store or file system), which it accesses and mutates via a Provider API.</li>
+            <li>DiskANN is a stateless orchestrator of vector requests between users, indexers, query engines, and the storage backend.</li>
+            <li>DiskANN provides a minimal API (updates with or without minibatches, paginated search) and integrates into the query planner for predicate evaluation.</li>
+        </ol>
+        
+        <p>This allows DiskANN to be plugged into different databases or systems and to inherit the availability and durability of the host database. 
+            The host database can choose to operate DiskANN at different memory tiers suited to target cost-performance points.
+             Our new version has been integrated with five (and counting) backends. It can also be connected to memory buffers to compete with FAISS, hnswlib, or the older "monolithic" in-memory DiskANN.</p>
+        
+        <p>When integrated with Azure Cosmos DB for NoSQL, Microsoft's highly available geo-distributed database, this integration brings vector indexing into operational databases and is competitive with specialized serverless vector databases <a href="#ref7" class="citation">[7]</a>. See slides from our VLDB 2025 talk here <a href="#ref23" class="citation">[23]</a>.</p>
+        
+        <p>For a 25-minute overview of the project, see the slides from an overview talk at VLDB 2025 <a href="#ref24" class="citation">[24]</a>.</p>
+    </div>
+
+    <div class="references">
+        <h2>References</h2>
+        <ol>
+            <li id="ref1" class="reference-item"><a href="https://harsha-simhadri.org/pubs/DiskANN19.pdf">Fast Accurate Billion-point Nearest Neighbor Search on a Single Node</a></li>
+            <li id="ref2" class="reference-item"><a href="https://arxiv.org/abs/2105.09613">FreshDiskANN: A Fast and Accurate Graph-Based ANN Index for Streaming Similarity Search</a></li>
+            <li id="ref3" class="reference-item"><a href="https://harsha-simhadri.org/pubs/Filtered-DiskANN23.pdf">FilteredDiskANN: Graph Algorithms for Approximate Nearest Neighbor Search with Filters</a></li>
+            <li id="ref4" class="reference-item"><a href="https://arxiv.org/abs/2502.13826">In-Place Updates of a Graph Index for Streaming Approximate Nearest Neighbor Search</a></li>
+            <li id="ref5" class="reference-item"><a href="https://dl.acm.org/doi/abs/10.1145/3627535.3638475">ParlayANN: Scalable and Deterministic Parallel Graph-Based Approximate Nearest Neighbor Search Algorithms</a></li>
+            <li id="ref6" class="reference-item"><a href="http://sites.computer.org/debull/A24sept/p20.pdf">The DiskANN library: Graph-Based Indices for Fast, Fresh and Filtered Vector Search</a></li>
+            <li id="ref7" class="reference-item"><a href="https://arxiv.org/pdf/2505.05885">Cost-Effective, Low Latency Vector Search with Azure Cosmos DB</a></li>
+            <li id="ref8" class="reference-item"><a href="https://openreview.net/forum?id=6AEsfCLRm3">DistributedANN: Efficient Scaling of a Single DiskANN Graph Across Thousands of Computers</a></li>
+            <li id="ref9" class="reference-item"><a href="https://proceedings.mlr.press/v176/simhadri22a/simhadri22a.pdf">Results of the NeurIPS'21 Challenge on Billion-Scale Approximate Nearest Neighbor Search</a></li>
+            <li id="ref10" class="reference-item"><a href="https://arxiv.org/abs/2409.17424">Results of the Big ANN: NeurIPS'23 competition</a></li>
+            <li id="ref11" class="reference-item"><a href="https://big-ann-benchmarks.com">https://big-ann-benchmarks.com</a></li>
+            <li id="ref12" class="reference-item"><a href="https://github.com/microsoft/DiskANN">https://github.com/microsoft/DiskANN</a></li>
+            <li id="ref13" class="reference-item"><a href="https://github.com/harsha-simhadri/big-ann-benchmarks/blob/main/benchmark/datasets.py">Big ANN Benchmarks dataset list</a></li>
+            <li id="ref14" class="reference-item"><a href="https://github.com/timescale/pgvectorscale">Timescale DB's pgvectorscale</a></li>
+            <li id="ref15" class="reference-item"><a href="https://github.com/datastax/jvector">IBM Datastax Jvector</a></li>
+            <li id="ref16" class="reference-item"><a href="https://arxiv.org/abs/2211.12850">OOD-DiskANN: Efficient and Scalable Graph ANNS for Out-of-Distribution Queries</a></li>
+            <li id="ref17" class="reference-item"><a href="https://arxiv.org/abs/2502.13336v1">Graph-Based Algorithms for Diverse Similarity Search</a></li>
+            <li id="ref18" class="reference-item"><a href="https://www.nvidia.com/en-us/on-demand/session/gtc25-s72905/">https://www.nvidia.com/en-us/on-demand/session/gtc25-s72905/</a></li>
+            <li id="ref19" class="reference-item"><a href="https://arxiv.org/abs/2404.06004">AiSAQ: All-in-Storage ANNS with Product Quantization for DRAM-free Information Retrieval</a></li>
+            <li id="ref20" class="reference-item"><a href="https://www.intel.com/content/www/us/en/developer/articles/technical/winning-neurips-billion-scale-ann-search-challenge.html">Intel: Winning the NeurIPS BillionScale Approximate Nearest Neighbor Search Challenge</a></li>
+            <li id="ref21" class="reference-item"><a href="https://github.com/NVIDIA/cuvis">BANG: Billion-Scale Approximate Nearest Neighbor Search using a Single GPU</a></li>
+            <li id="ref22" class="reference-item"><a href="https://developer.nvidia.com/blog/optimizing-vector-search-for-indexing-and-real-time-retrieval-with-nvidia-cuvs/">NVIDIA CuVS and DiskANN</a></li>
+            <li id="ref23" class="reference-item"><a href="https://harsha-simhadri.org/talks/cosmosdb_vector_search_VLDB25.pptx">Cosmos DB Vector Search VLDB 2025 slides</a></li>
+            <li id="ref24" class="reference-item"><a href="https://harsha-simhadri.org/talks/diskann_overview_talk_sep2025.pptx">DiskANN overview slides</a></li>
+            <li id="ref25" class="reference-item"><a href="https://openreview.net/pdf?id=JnXbUKtLzz">Sort Before You Prune: Improved Worst-Case Guarantees of the DiskANN Family of Graphs</a></li>
+            <li id="ref26" class="reference-item"><a href="https://openreview.net/forum?id=dILIRHcYvC">Learning Filter-Aware Distance Metrics for Nearest Neighbor Search with Multiple Filters</a></li>
+        </ol>
+    </div>
+</body>
+</html>
