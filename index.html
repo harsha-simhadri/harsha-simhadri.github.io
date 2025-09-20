@@ -74,60 +74,10 @@
 				</p>
 
 				<p>
-					In 2018, we started the <a href="https://github.com/Microsoft/DiskANN">DiskANN project</a> for
-					Approximate Nearest Neighbor Search (ANNS)
-					to address the large gap between research and practice. We developed
-					the first practical <a href="" pubs/DiskANN19.pdf">SSD-based</a>
-					ANNS system that can search a billion points in few milliseconds, real-time accurate <a
-						href="https://arxiv.org/abs/2105.09613">updates</a> and
-					fast predicated vector queries via <a href="pubs/Filtered-DiskANN23.pdf">Filtered-DiskANN
-					</a> that incorporate vector and predicate data into index construction.
-				</p>
-
-				<p>
-					These ideas are widely deployed <a
-						href="https://www.youtube.com/watch?time_continue=1&v=BnYNdSIKibQ">at scale in Microsoft</a> for
-					web and enterprise document search, advertisements and recommendation systems,
-					<a
-						href="https://blogs.windows.com/windowsdeveloper/2024/05/21/unlock-a-new-era-of-innovation-with-windows-copilot-runtime-and-copilot-pcs/">Windows
-						Copilot runtime</a>,
-					and have influcenced many vector databases
-					[<a href="https://github.com/jbellis/jvector">DataStax Jvector</a>,
-					<a href="https://github.com/timescale/pgvectorscale">pgvectorscale</a>,
-					<a href="https://www.pinecone.io/blog/hnsw-not-enough/">Pinecone Graph Algorithms</a>],
-					and hardware accelerated designs
-					[<a
-						href="https://www.intel.com/content/www/us/en/developer/articles/technical/winning-neurips-billion-scale-ann-search-challenge.html">Intel
-						OptaNNE for pmem</a>,
-					<a href="https://arxiv.org/html/2401.11324v2">BANG for GPUs</a>].
-				</p>
-
-				<p>
-					Recently, I joined Azure Data and have been working on a Rust re-write of DiskANN that
-					inter-operates with databases (e.g., CosmosDB NoSQL, PostgreSQL), key-value stores, and
-					plain old memory buffers and file systems.
-					This project is the foundation for vector indices in Azure Databases
-					such as <a href="https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search">CosmosDB
-						NoSQL</a>.
-				</p>
-
-				<p>
-					Along the way, we realized that there were precious few realistic datasets and benchmarks.
-					So we created and curated new datasets via <a
-						href="http://big-ann-benchmarks.com/">big-ann-benchmarks</a> for the research community.
-					We organized two competitions based on these datasets at
-					<a href="https://big-ann-benchmarks.com/neurips21.html">NeurIPS'21</a> and
-					<a href="https://github.com/harsha-simhadri/big-ann-benchmarks/tree/main/neurips23">NeurIPS'23</a>.
-					The first focused on billion-scale indices on standard and specialized hardware,
-					while the second focused on practical variants of vector search such as streaming, sparse and
-					filtered search.
-					We are open to ongoing dataset and algorithm contributions to this effort.
-				</p>
-
-				<p>
-					Here is a short <a href="pubs/ANNS-talk-Sep22.pptx">overview</a> on DiskANN and a recording from <a
-						href="https://www.ideal.northwestern.edu/events/theory-in-practice-workshop/">Northwestern IDEAL
-						workshop</a>.
+					In 2018, we started the DiskANN project</a> for Approximate Nearest Neighbor Search (ANNS)
+					to address the large gap between research and practice. It achived many of its goals.
+					Here is an <a href="diskann-overview.html">overview</a> of the project with references,
+					and a talk on some of these ideas from <a href="https://www.ideal.northwestern.edu/events/theory-in-practice-workshop/">Northwestern IDEAL workshop</a> (<a href="pubs/ANNS-talk-Sep22.pptx">slides</a>).
 				</p>
 
 
