@@ -1,6 +1,6 @@
 const data = window.BOOTH_DATA;
 const paperGrid = document.querySelector("#paper-grid");
-const workshopGrid = document.querySelector("#workshop-grid");
+const communityGrid = document.querySelector("#community-grid");
 const jobList = document.querySelector("#job-list");
 const jobSearch = document.querySelector("#job-search");
 const locationFilter = document.querySelector("#location-filter");
@@ -19,14 +19,14 @@ function renderPapers(filter = "all") {
   `).join("");
 }
 
-function renderWorkshops() {
-  workshopGrid.innerHTML = data.workshops.map(workshop => `
+function renderCommunity(type = "workshops") {
+  communityGrid.innerHTML = data[type].map(item => `
     <article class="workshop-card">
-      <span class="date">${workshop.date}</span>
-      <a href="${workshop.url}" target="_blank" rel="noreferrer" aria-label="Open ${workshop.title}">↗</a>
-      <h3>${workshop.title}</h3>
-      <p>${workshop.description}</p>
-      <div class="organizers">${workshop.organizers.map(name => `<span>${name}</span>`).join("")}</div>
+      <span class="date">${item.date}</span>
+      <a href="${item.url}" target="_blank" rel="noreferrer" aria-label="Open ${item.title}">↗</a>
+      <h3>${item.title}</h3>
+      <p>${item.description}</p>
+      <div class="organizers">${item.organizers.map(name => `<span>${name}</span>`).join("")}</div>
     </article>
   `).join("");
 }
@@ -74,6 +74,14 @@ document.querySelectorAll("[data-paper-filter]").forEach(button => {
   });
 });
 
+document.querySelectorAll("[data-community-filter]").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector(".community-tab.active").classList.remove("active");
+    button.classList.add("active");
+    renderCommunity(button.dataset.communityFilter);
+  });
+});
+
 [jobSearch, locationFilter].forEach(control => control.addEventListener("input", () => {
   visibleJobs = 10;
   renderJobs();
@@ -84,7 +92,7 @@ loadMore.addEventListener("click", () => {
 });
 
 renderPapers();
-renderWorkshops();
+renderCommunity();
 populateLocations();
 renderJobs();
 document.querySelector("#paper-stat").textContent = data.papers.length;
