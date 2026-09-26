@@ -131,21 +131,23 @@
     <div class="section">
         <h2>Current and Future</h2>
         <p>The code for this research <a href="#ref12" class="citation">[12]</a> was forked many times internally and reimplemented externally, which made it hard to manage and develop new algorithms. 
-            Further, since the 2023 version of DiskANN <a href="#ref12" class="citation">[12]</a> was tied to specific points in the storage hierarchy and managed its own index terms, 
+            Further, previous implementations of DiskANN <a href="#ref12" class="citation">[12]</a> were tied to specific points in the storage hierarchy and managed their own index terms, 
             it was hard to integrate into databases, preventing it from being hardened into a highly available and durable vector database.</p>
-        <p>With this in mind, since 2023 we have rewritten DiskANN in Rust with the following goals:</p>
+        <p>With this in mind, since 2023 we have the built the <bold>DiskANN3</bold> library from scratch in Rust with the following goals:</p>
         
         <ol>
             <li>DiskANN delegates storage of indexing terms to a host database (or key-value store or file system), which it accesses and mutates via a Provider API.</li>
             <li>DiskANN is a stateless orchestrator of vector requests between users, indexers, query engines, and the storage backend.</li>
             <li>DiskANN provides a minimal API (updates with or without minibatches, paginated search) and integrates into the query planner for predicate evaluation.</li>
+            <li>Implements the latest algorithms, quantizers and high quality arithmetic kernels to be reused across host systems.</li>
         </ol>
         
-        <p>This allows DiskANN to be plugged into different databases or systems and to inherit the availability and durability of the host database. 
+        <p>This allows <bold>DiskANN3</bold> to be plugged into different databases or systems and to inherit the availability and durability of the host database. 
             The host database can choose to operate DiskANN at different memory tiers suited to target cost-performance points.
-             Our new version has been integrated with five (and counting) backends. It can also be connected to memory buffers to compete with FAISS, hnswlib, or the older "monolithic" in-memory DiskANN.</p>
+             Our new version has been integrated with many backends. It can also be connected to memory buffers and competes on performance with FAISS, hnswlib, or the older "monolithic" in-memory DiskANN.</p>
         
-        <p>When integrated with Azure Cosmos DB for NoSQL, Microsoft's highly available geo-distributed database, this integration brings vector indexing into operational databases and is competitive with specialized serverless vector databases <a href="#ref7" class="citation">[7]</a>. See slides from our VLDB 2025 talk here <a href="#ref23" class="citation">[23]</a>.</p>
+        <p>When integrated with Azure Cosmos DB for NoSQL, Microsoft's highly available geo-distributed database, this integration brings vector
+            indexing into operational databases and is competitive with specialized serverless vector databases <a href="#ref7" class="citation">[7]</a>. See slides from our VLDB 2025 talk here <a href="#ref23" class="citation">[23]</a>.</p>
         
         <p>For a 25-minute overview of the project, see the slides from an overview talk at VLDB 2025 <a href="#ref24" class="citation">[24]</a>.</p>
     </div>
